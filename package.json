@@ -1,0 +1,40 @@
+{
+  "name": "vending-machine-kata",
+  "version": "1.0.0",
+  "description": "1TW exercise in Advanced module in Codecool",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc public/js/*.ts && webpack",
+    "test": "tsc public/js/*.ts && babel-node spec/support/run.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/e-victoria/vending-machine-kata.git"
+  },
+  "author": "Victoria Eremeeva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/e-victoria/vending-machine-kata/issues"
+  },
+  "homepage": "https://github.com/e-victoria/vending-machine-kata#readme",
+  "devDependencies": {
+    "@types/jasmine": "^3.5.10",
+    "@types/node": "^13.13.0",
+    "babel-cli": "^6.26.0",
+    "chai": "^4.2.0",
+    "http-server": "^0.12.1",
+    "jasmine": "^3.5.0",
+    "jasmine-core": "^3.5.0",
+    "karma": "^5.0.1",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-jasmine": "^3.1.1",
+    "ts-loader": "^7.0.1",
+    "ts-node": "^8.8.2",
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "babel-preset-es2015": "^6.24.1"
+  }
+}
