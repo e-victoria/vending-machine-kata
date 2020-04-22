@@ -24,7 +24,7 @@ describe("ProductsController", function () {
     it("should get a list of available products", function () {
         const product3 = new Product('bounty', 'bounty-1744070_640.jpg', 1, 0);
         productsController.addProduct(product3);
-        const actual = productsController.getAllProducts();
+        const actual = productsController.getAvailableProducts();
         const expected = [];
         expected.push(product1, product2);
 
