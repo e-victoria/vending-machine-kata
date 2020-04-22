@@ -19,6 +19,7 @@ export default class UIController {
         const priceField = <HTMLHtmlElement>document.querySelector('.checkout__price');
         const price = <HTMLHtmlElement>document.querySelector('.checkout__monets');
         priceField.style.display ='block';
+        this.vendingMachine.setCoinsAmount(product.getPrice());
         price.textContent = `${product.getPrice()}`;
     }
 

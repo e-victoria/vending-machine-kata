@@ -10,6 +10,10 @@ export default class VendingMachine {
         this.coinsAmount = 0;
     }
 
+    setCoinsAmount(price: number): void {
+        this.coinsAmount = price;
+    }
+
     initWithProducts(): void {
         const marsBar: Product = new Product('Mars', 'mars.jpg', 1, 8);
         const bountyBar: Product = new Product('Bounty', 'bounty-1744070_640.jpg', 1, 8);
