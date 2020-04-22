@@ -1,7 +1,8 @@
 import Product from '../../public/js/Product';
 
 describe("Product", function () {
-    let product;
+    let product1;
+    let product2;
 
     beforeEach(function() {
         product1 = new Product('mars', 'mars.jpg', 1, 2);
@@ -37,7 +38,8 @@ describe("Product", function () {
     });
 
     it("should change product1 amount", function () {
-        const actual = product2.setAmount(3);
+        product1.setAmount(3);
+        const actual = product1.getAmount();
         const expected = 3;
 
         expect(actual).toEqual(expected);
