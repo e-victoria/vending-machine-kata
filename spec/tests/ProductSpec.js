@@ -36,4 +36,11 @@ describe("Product", function () {
         expect(actual).toEqual(expected);
     });
 
+    it("should change product1 amount", function () {
+        const actual = product2.setAmount(3);
+        const expected = 3;
+
+        expect(actual).toEqual(expected);
+    });
+
 })
