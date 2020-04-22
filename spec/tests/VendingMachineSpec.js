@@ -42,4 +42,21 @@ describe("VendingMachine", function () {
         expect(actual).toEqual(expected);
     });
 
+    it("update coin amount", function () {
+        vendingMachine.insertCoin(0.25);
+        const actual = vendingMachine.getCoinsAmount();
+        const expected = 0.25;
+
+        expect(actual).toEqual(expected);
+    });
+
+    it("update coin amount", function () {
+        vendingMachine.insertCoin(0.25);
+        vendingMachine.insertCoin(0.1);
+        const actual = vendingMachine.getCoinsAmount();
+        const expected = 0.35;
+
+        expect(actual).toEqual(expected);
+    });
+
 })
