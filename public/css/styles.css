@@ -6,17 +6,103 @@
     margin: -1px;
 }
 
+.btn {
+    width: 80%;
+    font-size: 17px;
+    padding: 10px;
+    border: none;
+    background-color: transparent;
+    box-shadow: 0 0 3px #ced7da;
+    cursor: pointer;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.btn:hover {
+    box-shadow: 0 0 5px #ced7da;
+}
+
 .vending_machine {
     display: flex;
-    padding: 10px 2vw;
+    padding: 15px 2vw;
 }
 
 .checkout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    margin-left: auto;
+    padding: 12px;
+    box-shadow: 0 0 3px #b6bcbe;
+    box-sizing: border-box;
+}
+
+.checkout__message {
+    width: 80%;
+    margin: 0;
+    margin-bottom: 25px;
+    padding: 15px;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    box-shadow: 0 0 2px #7feba3;
+    box-sizing: border-box;
+}
+
+.checkout__display {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    height: 70px;
+    margin-bottom: 25px;
+    padding: 15px;
+    color: #ffffff;
+    background-color: #686e6c;
+    box-sizing: border-box;
+}
+
+.checkout__price {
+    display: none;
+}
+
+.checkout__insert {
+    width: 80%;
+    display: flex;
+    padding: 15px;
+    flex-wrap: wrap;
+    align-items: center;
+    box-shadow: 0 0 2px #7feba3;
+    box-sizing: border-box;
+}
+
+.checkout__btn {
+    margin-left: auto;
+}
+
+.checkout__insert__label {
+    margin-bottom: 15px;
+}
+
+#coins {
+    width: 38%;
+    font-size: 17px;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+#coins,
+.checkout__btn {
+    display: inline-block;
+    height: 40px;
+}
+
+.checkout__btn {
     width: 50%;
 }
 
 .products__wrapper {
-    width: 60%;
+    width: 58%;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -53,20 +139,4 @@
 .product__price {
     margin: 0 0 12px 5px;
     font-size: 15px;
-}
-
-.product__btn {
-    width: 80%;
-    font-size: 17px;
-    padding: 10px;
-    border: none;
-    background-color: transparent;
-    box-shadow: 0 0 3px #ced7da;
-    cursor: pointer;
-    border-radius: 3px;
-    box-sizing: border-box;
-}
-
-.product__btn:hover {
-    box-shadow: 0 0 5px #ced7da;
 }
