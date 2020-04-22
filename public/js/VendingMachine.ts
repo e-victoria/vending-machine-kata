@@ -1,7 +1,11 @@
 export default class VendingMachine {
     insertCoin(coin: number): boolean {
-        if (coin === 0.01) {
-            return false;
-        } 
+        let answer: boolean = false;
+        
+        if (coin === 0.1 || coin === 0.05 || coin === 0.25) {
+            answer = true;
+        }
+
+        return answer;
     }
 }
