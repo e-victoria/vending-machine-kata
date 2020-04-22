@@ -42,7 +42,7 @@ export default class VendingMachine {
         let answer: boolean = false;
         
         if (coin === 0.1 || coin === 0.05 || coin === 0.25) {
-            this.coinsAmount += coin;
+            this.coinsAmount -= coin;
             answer = true;
         }
 

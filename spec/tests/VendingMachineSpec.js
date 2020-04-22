@@ -43,18 +43,20 @@ describe("VendingMachine", function () {
     });
 
     it("update coin amount", function () {
+        vendingMachine.setCoinsAmount(0.25);
         vendingMachine.insertCoin(0.25);
         const actual = vendingMachine.getCoinsAmount();
-        const expected = 0.25;
+        const expected = 0;
 
         expect(actual).toEqual(expected);
     });
 
     it("update coin amount", function () {
+        vendingMachine.setCoinsAmount(1);
         vendingMachine.insertCoin(0.25);
         vendingMachine.insertCoin(0.1);
         const actual = vendingMachine.getCoinsAmount();
-        const expected = 0.35;
+        const expected = 1 - 0.35;
 
         expect(actual).toEqual(expected);
     });
