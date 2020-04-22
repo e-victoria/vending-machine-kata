@@ -14,4 +14,32 @@ describe("VendingMachine", function () {
         expect(actual).toEqual(expected);
     });
 
+    it("should reject invalid coins", function () {
+        const actual = vendingMachine.insertCoin(5);
+        const expected = false;
+
+        expect(actual).toEqual(expected);
+    });
+
+    it("should accept a nickel", function () {
+        const actual = vendingMachine.insertCoin(0.05);
+        const expected = false;
+
+        expect(actual).toEqual(expected);
+    });
+
+    it("should accept a dime", function () {
+        const actual = vendingMachine.insertCoin(0.1);
+        const expected = false;
+
+        expect(actual).toEqual(expected);
+    });
+
+    it("should accept a quarter", function () {
+        const actual = vendingMachine.insertCoin(0.25);
+        const expected = false;
+
+        expect(actual).toEqual(expected);
+    });
+
 })
