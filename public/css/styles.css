@@ -80,6 +80,11 @@
     margin-left: auto;
 }
 
+.checkout__btn:disabled {
+    box-shadow: none;
+    background-color: #cecdcd;
+}
+
 .checkout__insert__label {
     margin-bottom: 15px;
 }

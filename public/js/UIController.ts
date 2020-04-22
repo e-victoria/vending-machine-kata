@@ -15,12 +15,36 @@ export default class UIController {
         this.renderAllProducts();
     }
 
-    controllVendingMachine(product: Product):void {
+    waitForCoins(): void {
+        const checkoutBtn = document.querySelector('.checkout__btn');
+        const price = <HTMLHtmlElement>document.querySelector('.checkout__monets');
+        const input = <HTMLInputElement>document.getElementById('coins');
+        checkoutBtn.removeAttribute('disabled');
+
+        checkoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const insertedCoin = parseFloat(input.value);
+            const validCoin: boolean = this.vendingMachine.insertCoin(insertedCoin);
+            if (validCoin) {
+                price.textContent = `${(parseFloat(price.textContent) - insertedCoin).toFixed(2)}`;
+            }
+            if (parseFloat(price.textContent) <= 0) {
+                checkoutBtn.setAttribute('disabled', 'true');
+            }
+        })
+    }
+
+    getProductToUserAndGiveСhange(): void {
+        //TODO
+    }
+
+    updatePriceOnVendingMachine(product: Product):void {
         const priceField = <HTMLHtmlElement>document.querySelector('.checkout__price');
         const price = <HTMLHtmlElement>document.querySelector('.checkout__monets');
         priceField.style.display ='block';
         this.vendingMachine.setCoinsAmount(product.getPrice());
         price.textContent = `${product.getPrice()}`;
+        this.waitForCoins();
     }
 
     selectProduct(): void {
@@ -30,14 +54,17 @@ export default class UIController {
             products_btn[i].addEventListener('click', (e) => {
                 e.preventDefault();
                 selected = this.products[i];
-                this.controllVendingMachine(selected);
+                this.updatePriceOnVendingMachine(selected);
             })
         }
     }
 
     renderAllProducts(): void {
+        const checkoutBtn = document.querySelector('.checkout__btn');
         const productsContainer = document.querySelector('.products__wrapper');
         this.products = this.vendingMachine.getAllProducts();
+
+        checkoutBtn.setAttribute('disabled', 'true');
 
         for (let product of this.products) {
             productsContainer.appendChild(this.createProduct(product));
@@ -64,7 +91,7 @@ export default class UIController {
         price.textContent = product.getPrice() + '$';
 
         const btn = document.createElement('button');
-        btn.setAttribute('type', 'button')
+        btn.setAttribute('type', 'button');
         btn.classList.add('btn', 'product__btn');
         btn.textContent = 'Want this!';
 
