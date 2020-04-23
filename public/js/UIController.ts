@@ -20,6 +20,18 @@ export default class UIController {
     start(): void {
         this.vendingMachine.initWithProducts();
         this.renderAllProducts();
+        this.cancelTransaction();
+    }
+
+    cancelTransaction(): void {
+        const calcelBtn: HTMLElement = document.querySelector('.cancel__btn');
+        const cancel = (e) => {
+            e.preventDefault();
+            this.vendingMachine.cancelAndReturnMoney();
+            this.price.textContent = '0';
+            this.selectProduct();
+        }
+        calcelBtn.addEventListener('click', cancel);
     }
 
     waitForCoins(): void {
@@ -28,8 +40,9 @@ export default class UIController {
         const input = <HTMLInputElement>document.getElementById('coins');
         checkoutBtn.removeAttribute('disabled');
 
-        const handler = (e) => {
+        const handler = (e) => {            
             e.preventDefault();
+            checkoutBtn.setAttribute('eventListner', 'true');
             const insertedCoin = parseFloat(input.value);
             const validCoin: boolean = this.vendingMachine.insertCoin(insertedCoin);
             if (validCoin) {
@@ -37,16 +50,17 @@ export default class UIController {
             }
             if (parseFloat(price.textContent) <= 0) {
                 checkoutBtn.setAttribute('disabled', 'true');
-                this.getProductToUserAndGiveСhange();
+                this.giveProductToUser();
                 checkoutBtn.removeEventListener('click', handler);
             }
         }
 
-        checkoutBtn.addEventListener('click', handler)
-
+        if (!checkoutBtn.hasAttribute('eventListner')) {
+            checkoutBtn.addEventListener('click', handler);
+        }
     }
 
-    getProductToUserAndGiveСhange(): void {
+    giveProductToUser(): void {
         const productWrapper = document.getElementById(this.selectedProductDOMId);
         const image = productWrapper.querySelector('img');
         const imageShadow = <HTMLDivElement>image.cloneNode(true);
@@ -71,8 +85,6 @@ export default class UIController {
             this.vendingMachine.giveMoneyBack();
             this.price.textContent = 0 + '';
         }
-
-        this.renderAllProducts();
     }
 
     updatePriceOnVendingMachine(product: Product, productId: string):void {
@@ -89,12 +101,13 @@ export default class UIController {
         let selected:  Product;
         const products_btn = document.querySelectorAll('.product__btn');
         for (let i: number = 0; i < products_btn.length; i++) {
-            products_btn[i].addEventListener('click', (e) => {
+            const select = (e) => {
                 e.preventDefault();
                 selected = this.products[i];
                 const id = `product-${selected.getName().toLowerCase()}`
                 this.updatePriceOnVendingMachine(selected, id);
-            })
+            }
+            products_btn[i].addEventListener('click', select, {once: true})
         }
     }
 

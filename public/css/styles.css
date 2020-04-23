@@ -154,3 +154,10 @@
     transition: ease-in-out 1s;
     animation: drop 1s ease-in-out;
 }
+
+.cancel__btn {
+    color: #ffffff;
+    margin-top: 45px;
+    width: 60%;
+    background-color: #f04949;
+}

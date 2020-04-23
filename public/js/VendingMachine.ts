@@ -61,4 +61,8 @@ export default class VendingMachine {
     dropProduct(productName: string): void {
         this.productsController.dropProduct(productName);
     }
+
+    cancelAndReturnMoney(): void {
+        this.setCoinsAmount(0);
+    }
 }
