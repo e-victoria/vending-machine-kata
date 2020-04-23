@@ -16,6 +16,14 @@ export default class ProductsController {
         this.productsList.push(product);
     }
 
+    getProductByName(productName: string): Product {
+        for (let product of this.productsList) {
+            if (product.getName() === productName) {
+                return product;
+            }
+        }
+    }
+
     getAvailableProducts(): Array<Product> {
         const availableProducts = [];
         for (let product of this.productsList) {
@@ -30,6 +38,11 @@ export default class ProductsController {
 
     getAllProducts(): Array<Product> {
         return this.productsList;
+    }
+
+    dropProduct(productName: string): void {
+        const product: Product = this.getProductByName(productName);
+        product.setAmount(product.getAmount() - 1);
     }
 
 }

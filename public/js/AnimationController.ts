@@ -1,14 +1,10 @@
 export default class AnimationController {
 
-    dropElement(element: HTMLElement, callback): void {
-        const elementOriginalCords: Map<string, number> = new Map();
-        elementOriginalCords.set('top', element.offsetTop);
-        elementOriginalCords.set('left', element.offsetLeft - element.offsetWidth);
-
-        element.animate({ transform: [`translate(${elementOriginalCords.get('left')}px, ${elementOriginalCords.get('top')}px)`, `translate(${elementOriginalCords.get('left') + 60}px, ${elementOriginalCords.get('left') + 1000}px)`] },
+    dropElement(element: HTMLElement, coords: Array<number>, callback): void {
+        element.animate({ transform: [`translate(${coords[0]}px, ${coords[1]}px)`, `translate(${coords[0]}px, ${coords[1] + 1000}px)`] },
             { duration: 1300 });
 
-        window.setTimeout(callback, 2000);
+        window.setTimeout(callback, 1300);
     }
 
 }

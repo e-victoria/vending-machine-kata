@@ -43,6 +43,7 @@ export default class VendingMachine {
         
         if (coin === 0.1 || coin === 0.05 || coin === 0.25) {
             this.coinsAmount -= coin;
+            this.coinsAmount.toFixed(2);
             answer = true;
         }
 
@@ -51,5 +52,13 @@ export default class VendingMachine {
 
     getCoinsAmount(): number {
         return this.coinsAmount;
+    }
+
+    giveMoneyBack(): number {
+        return this.coinsAmount;
+    }
+
+    dropProduct(productName: string): void {
+        this.productsController.dropProduct(productName);
     }
 }
