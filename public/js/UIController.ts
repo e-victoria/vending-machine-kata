@@ -1,13 +1,17 @@
 import Product from "./Product";
 import VendingMachine from "./VendingMachine";
+import AnimationController from './AnimationController';
 
 export default class UIController {
 
     private vendingMachine: VendingMachine;
     private products: Array<Product>;
+    private selectedProductDOMId: string;
+    private animationController: AnimationController;
 
     constructor() {
         this.vendingMachine = new VendingMachine();
+        this.animationController = new AnimationController();
     }
 
     start(): void {
@@ -30,15 +34,32 @@ export default class UIController {
             }
             if (parseFloat(price.textContent) <= 0) {
                 checkoutBtn.setAttribute('disabled', 'true');
+                this.getProductToUserAndGiveСhange();
             }
         })
     }
 
     getProductToUserAndGiveСhange(): void {
-        //TODO
+        const productWrapper = document.getElementById(this.selectedProductDOMId);
+        const image = productWrapper.querySelector('img');
+        const imageShadow = <HTMLDivElement>image.cloneNode(true);
+        const width: number = image.offsetWidth;
+        imageShadow.style.width = width + 'px';
+        imageShadow.style.top = 58 + 'px';
+        imageShadow.style.left = `${productWrapper.offsetLeft}px`;
+
+        productWrapper.appendChild(imageShadow);
+        imageShadow.classList.add('selected-transformed');
+
+        const callback = () => {
+            productWrapper.removeChild(imageShadow);
+        }
+
+        this.animationController.dropElement(imageShadow, callback); 
     }
 
-    updatePriceOnVendingMachine(product: Product):void {
+    updatePriceOnVendingMachine(product: Product, productId: string):void {
+        this.selectedProductDOMId = productId;
         const priceField = <HTMLHtmlElement>document.querySelector('.checkout__price');
         const price = <HTMLHtmlElement>document.querySelector('.checkout__monets');
         priceField.style.display ='block';
@@ -54,7 +75,8 @@ export default class UIController {
             products_btn[i].addEventListener('click', (e) => {
                 e.preventDefault();
                 selected = this.products[i];
-                this.updatePriceOnVendingMachine(selected);
+                const id = `product-${selected.getName().toLowerCase()}`
+                this.updatePriceOnVendingMachine(selected, id);
             })
         }
     }
@@ -70,11 +92,12 @@ export default class UIController {
             productsContainer.appendChild(this.createProduct(product));
         }
 
-        console.log(this.selectProduct());
+        this.selectProduct();
     }
 
     createProduct(product: Product): Node {
         const productDiv = document.createElement('div');
+        productDiv.setAttribute('id', `product-${product.getName().toLowerCase()}`)
         productDiv.classList.add('product');
 
         const title = document.createElement('h3');

@@ -32,6 +32,7 @@
     flex-direction: column;
     align-items: center;
     width: 40%;
+    height: auto;
     margin-left: auto;
     padding: 12px;
     box-shadow: 0 0 3px #b6bcbe;
@@ -108,6 +109,7 @@
 
 .products__wrapper {
     width: 58%;
+    position: relative;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -144,4 +146,11 @@
 .product__price {
     margin: 0 0 12px 5px;
     font-size: 15px;
+}
+
+.selected-transformed {
+    position: absolute;
+    opacity: 0.8;
+    transition: ease-in-out 1s;
+    animation: drop 1s ease-in-out;
 }
