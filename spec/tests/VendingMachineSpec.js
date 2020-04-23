@@ -61,4 +61,26 @@ describe("VendingMachine", function () {
         expect(actual).toEqual(expected);
     });
 
+    it("return -0.25 when client paid over the product price", () => {
+        vendingMachine.setCoinsAmount(1);
+        for (let i = 0; i < 5; i++) {
+            vendingMachine.insertCoin(0.25);
+        }
+        const actual = vendingMachine.getCoinsAmount();
+        const expected = -0.25;
+
+        expect(actual).toEqual(expected);
+    });
+
+    it("return 0 when client paid the product price", () => {
+        vendingMachine.setCoinsAmount(1);
+        for (let i = 0; i < 4; i++) {
+            vendingMachine.insertCoin(0.25);
+        }
+        const actual = vendingMachine.getCoinsAmount();
+        const expected = 0;
+
+        expect(actual).toEqual(expected);
+    });
+
 })
