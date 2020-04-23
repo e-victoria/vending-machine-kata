@@ -31,4 +31,12 @@ describe("ProductsController", function () {
         expect(actual).toEqual(expected);
     });
 
+    it("should reduce product amount after being bought", () => {
+        productsController.dropProduct('mars');
+        const actual = product1.getAmount();
+        const expected = 1;
+
+        expect(actual).toEqual(expected);
+    });
+
 })
