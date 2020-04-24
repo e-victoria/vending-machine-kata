@@ -89,7 +89,7 @@ describe("VendingMachine", function () {
             vendingMachine.insertCoin(0.25);
         }
         const actual = vendingMachine.giveMoneyBack();
-        const expected = 0.25;
+        const expected = 0.75;
 
         expect(actual).toEqual(expected);
     });

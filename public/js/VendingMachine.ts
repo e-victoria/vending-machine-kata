@@ -3,6 +3,7 @@ import ProductsController from "./ProductsController";
 
 export default class VendingMachine {
     private coinsAmount: number;
+    private initialPrice: number;
     private productsController: ProductsController;
 
     constructor() {
@@ -11,6 +12,7 @@ export default class VendingMachine {
     }
 
     setCoinsAmount(price: number): void {
+        this.initialPrice = price;
         this.coinsAmount = price;
     }
 
@@ -55,7 +57,7 @@ export default class VendingMachine {
     }
 
     giveMoneyBack(): number {
-        return this.coinsAmount;
+        return this.initialPrice - this.coinsAmount;
     }
 
     dropProduct(productName: string): void {

@@ -61,6 +61,7 @@
     color: #ffffff;
     background-color: #686e6c;
     box-sizing: border-box;
+    border-radius: 3px;
 }
 
 .checkout__price {
@@ -160,4 +161,33 @@
     margin-top: 45px;
     width: 60%;
     background-color: #f04949;
+}
+
+.change__container {
+    display: flex;
+    align-items: center;
+    margin-top: 55px;
+    padding: 0 20px;
+    width: 80%;
+    height: 85px;
+    box-shadow: inset 0 0 4px #b6bcbe;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+
+.coin {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    transform: scale(0);
+}
+
+.coin--show {
+    transition: 700ms ease-in;
+    transform: scale(1);
+}
+
+.coin svg {
+    width: 40px;
+    height: 40px;
 }

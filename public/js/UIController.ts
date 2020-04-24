@@ -23,10 +23,33 @@ export default class UIController {
         this.cancelTransaction();
     }
 
+    returnMoney(amount: number) {
+        const coinContainer: HTMLElement = document.querySelector('.change__container');
+        const coin: HTMLElement = document.querySelector('.coin');
+        const newCoin: HTMLElement = <HTMLElement>coin.cloneNode(true);
+        
+        console.log(amount)
+        if (amount < 0.50) {
+            coin.classList.add('coin--show');
+        } else {
+            coinContainer.appendChild(newCoin);
+            coin.classList.add('coin--show');
+            window.setTimeout(() => {
+                newCoin.classList.add('coin--show');
+            }, 750);
+        }
+
+        window.setTimeout(() => {
+            coin.classList.remove('coin--show');
+            coinContainer.removeChild(newCoin);
+        }, 3000)
+    }
+
     cancelTransaction(): void {
         const calcelBtn: HTMLElement = document.querySelector('.cancel__btn');
         const cancel = (e) => {
             e.preventDefault();
+            this.returnMoney(this.vendingMachine.giveMoneyBack());
             this.vendingMachine.cancelAndReturnMoney();
             this.price.textContent = '0';
             this.selectProduct();
@@ -84,6 +107,7 @@ export default class UIController {
         if (this.vendingMachine.getCoinsAmount() < 0) {
             this.vendingMachine.giveMoneyBack();
             this.price.textContent = 0 + '';
+            this.returnMoney(this.vendingMachine.giveMoneyBack());
         }
     }
 
